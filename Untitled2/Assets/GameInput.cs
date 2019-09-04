@@ -6,7 +6,7 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput instance;
 
-    public float playerRotationSpeed = 100.0f;
+    public float playerRotationSpeed = 300.0f;
     public float mouseRotationX, mouseRotationY;
     Player player;
     MainCamera mainCamera;
@@ -19,6 +19,8 @@ public class GameInput : MonoBehaviour
         if (!player) Debug.Log("Could not get reference to Player componenet");
         mainCamera = GameObject.Find("MainCamera").GetComponent<MainCamera>();
         if (!mainCamera) Debug.Log("Could not get reference to MainCamera componenet");
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
