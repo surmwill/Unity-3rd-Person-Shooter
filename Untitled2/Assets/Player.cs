@@ -66,9 +66,23 @@ public class Player : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.transform.tag == PrefabManager.instance.bullet.tag)
+        if(hit.gameObject.tag == PrefabManager.instance.groundBlock.tag) 
         {
-            Debug.Log("hit by bullet");
+            GroundBlock block = hit.gameObject.GetComponent<GroundBlock>();
+            if(!block.grassType)
+            {
+                GrassGrid grassGrid = Instantiate(
+                    PrefabManager.instance.grassPlatform, 
+                    block.gameObject.transform.position + block.gameObject.transform.TransformVector(-0.5f, 0.5001f, -0.5f), 
+                    block.transform.rotation
+                    ).GetComponent<GrassGrid>();
+
+                grassGrid.Init(
+                    block.transform.localScale.x,
+                    block.transform.localScale.z,
+                    block.transform.InverseTransformPoint(hit.point));
+                block.grassType = true;
+            }
         }
     }
 

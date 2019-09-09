@@ -57,6 +57,7 @@
      <Compile Include="Assets\BulletTrail.cs" />
      <Compile Include="Assets\GameInput.cs" />
      <Compile Include="Assets\GrassGrid.cs" />
+     <Compile Include="Assets\GroundBlock.cs" />
      <Compile Include="Assets\Gun.cs" />
      <Compile Include="Assets\MainCamera.cs" />
      <Compile Include="Assets\Pistol.cs" />

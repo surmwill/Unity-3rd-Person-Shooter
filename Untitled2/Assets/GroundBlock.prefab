@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4460478492220240442}
   - component: {fileID: 2973743423341429628}
   - component: {fileID: 6551257938065442919}
+  - component: {fileID: 477950775276311277}
   m_Layer: 0
   m_Name: GroundBlock
-  m_TagString: Untagged
+  m_TagString: GroundBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,3 +92,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &477950775276311277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7464342613847119100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd86a3e58c428445a45d5fecda7a38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
