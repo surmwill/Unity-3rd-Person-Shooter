@@ -56,11 +56,15 @@
      <Compile Include="Assets\Bullet.cs" />
      <Compile Include="Assets\BulletTrail.cs" />
      <Compile Include="Assets\GameInput.cs" />
+     <Compile Include="Assets\GrassGrid.cs" />
      <Compile Include="Assets\Gun.cs" />
      <Compile Include="Assets\MainCamera.cs" />
      <Compile Include="Assets\Pistol.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\PrefabManager.cs" />
+     <None Include="Assets\Shaders\Grass.shader" />
+     <None Include="Assets\Shaders\TessellationExample.shader" />
+     <None Include="Assets\Shaders\CustomTessellation.cginc" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/w/Unity-3rd-Person-Shooter/Untitled2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

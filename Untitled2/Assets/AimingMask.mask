@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AimingMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: 01
+    m_Weight: 0
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/LowerBack
+    m_Weight: 0
+  - m_Path: Armature/LowerBack/LowerBack_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/Head
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/Head/Head.002
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/Head/Head.002/Head.002_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftBotFingerConnector
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftBotFingerConnector/LeftBotFinger
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftBotFingerConnector/LeftBotFinger/LeftBotFinger2
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftBotFingerConnector/LeftBotFinger/LeftBotFinger2/LeftBotFinger3
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftBotFingerConnector/LeftBotFinger/LeftBotFinger2/LeftBotFinger3/LeftBotFinger3_end
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftMiddleFinger
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftMiddleFinger/LeftMiddleFinger2
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftMiddleFinger/LeftMiddleFinger2/LeftMiddleFinger3
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftMiddleFinger/LeftMiddleFinger2/LeftMiddleFinger3/LeftMiddleFinger3_end
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftThumb
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftThumb/LeftThumb2
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftThumb/LeftThumb2/LeftThumb3
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftThumb/LeftThumb2/LeftThumb3/LeftThumb3_end
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftTopFinger
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftTopFinger/LeftTopFinger2
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftTopFinger/LeftTopFinger2/LeftTopFinger3
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist/LeftTopFingerConnector/LeftTopFinger/LeftTopFinger2/LeftTopFinger3/LeftTopFinger3_end
+    m_Weight: 1
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightBotFingerConnector
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightBotFingerConnector/RightBotFinger
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightBotFingerConnector/RightBotFinger/RightBotFinger2
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightBotFingerConnector/RightBotFinger/RightBotFinger2/RightBotFinger3
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightBotFingerConnector/RightBotFinger/RightBotFinger2/RightBotFinger3/RightBotFinger3_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightMiddleFinger
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightMiddleFinger/RightMiddleFinger2
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightMiddleFinger/RightMiddleFinger2/RightMiddleFinger3
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightMiddleFinger/RightMiddleFinger2/RightMiddleFinger3/RightMiddleFinger3_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightThumb
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightThumb/RightThumb2
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightThumb/RightThumb2/RightThumb3
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightThumb/RightThumb2/RightThumb3/RightThumb3_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightTopFinger
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightTopFinger/RightTopFinger2
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightTopFinger/RightTopFinger2/RightTopFinger3
+    m_Weight: 0
+  - m_Path: Armature/MiddleBack/UpperBack/RightUpperArm/RightLowerArm/RightWrist/RightTopFingerConnector/RightTopFinger/RightTopFinger2/RightTopFinger3/RightTopFinger3_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/RightUpperLeg
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/RightUpperLeg/RightLowerLeg
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/RightUpperLeg/RightLowerLeg/RightAnkle
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/RightUpperLeg/RightLowerLeg/RightAnkle/RightFoot
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/RightUpperLeg/RightLowerLeg/RightAnkle/RightFoot/RightFoot_end
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/UpperLeftLeg
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/UpperLeftLeg/LowerLeftLeg
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/UpperLeftLeg/LowerLeftLeg/LeftAnkle
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/UpperLeftLeg/LowerLeftLeg/LeftAnkle/LeftFoot
+    m_Weight: 0
+  - m_Path: Armature/MiddleBackConnector/UpperLeftLeg/LowerLeftLeg/LeftAnkle/LeftFoot/LeftFoot_end
+    m_Weight: 0
