@@ -6,26 +6,54 @@ public class Player : MonoBehaviour
 {
     private CharacterController characterController;
     private Animator animator;
-    private GameObject gun;
+    private Gun gun;
     private Vector3 velocity = Vector3.zero;
     private Vector3 accel = Vector3.zero;
+    private IEnumerator aimingCoroutine;
 
     private float speed = 15.0f;
     private float jumpSpeed = 15.0f;
     private float gravity = -20.0f;
     private bool running = false;
 
+    enum LMBState { PRESSED, NOT_PRESSED };
+    private LMBState currLmbState = LMBState.PRESSED;
+    private LMBState prevLmbState = LMBState.NOT_PRESSED;
+
+    const string LAYER_AIM = "Aiming";
+
+    const float aimingTransitionTime = 0.5f;
+    const float aimingSteps = 10;
+
     void Awake()
     {
-        gun = GameObject.Find("Player/Pistol");
         animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 1.0f);
         characterController = GetComponent<CharacterController>();
         accel.y = gravity;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButton(1)) currLmbState = LMBState.PRESSED;
+        else currLmbState = LMBState.NOT_PRESSED;
+
+        if (currLmbState == LMBState.PRESSED && prevLmbState == LMBState.NOT_PRESSED)
+        {
+            animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 1.0f);
+        }
+        else if (currLmbState == LMBState.NOT_PRESSED && prevLmbState == LMBState.PRESSED) 
+        {
+            prevLmbState = LMBState.NOT_PRESSED;
+            animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 0.0f);
+        }
+
+        prevLmbState = currLmbState;
     }
 
     public void UpdatePlayerMovement()
@@ -98,6 +126,16 @@ public class Player : MonoBehaviour
             if (characterController.isGrounded) bulletPush *= 8.0f;
             velocity += bulletPush;
             */
+        }
+        else if(hit.tag == PrefabManager.instance.m16.tag)
+        {
+            GameObject gunObject = hit.gameObject;
+            gun = gunObject.GetComponent<Gun>();
+            if(!gun.equipped)
+            {
+                gun.equipped = true;
+                gunObject.GetComponent<Collider>().enabled = false;
+            }
         }
     }
 }

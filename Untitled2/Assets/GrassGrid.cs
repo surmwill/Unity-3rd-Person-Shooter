@@ -20,7 +20,6 @@ public class GrassGrid : MonoBehaviour
         this.surfaceLengthX = surfaceLengthX;
         this.surfaceLengthY = surfaceLengthY;
         this.collisionPoint = collisionPoint;
-        Debug.Log(collisionPoint);
 
         numCellsX = (int)Mathf.Ceil(surfaceLengthX);
         numCellsY = (int)Mathf.Ceil(surfaceLengthY);
@@ -29,7 +28,7 @@ public class GrassGrid : MonoBehaviour
         startCellY = Mathf.FloorToInt((collisionPoint.x + 0.5f) * (float)numCellsX);
     }
 
-  
+    /*
     void OnDrawGizmos()
     {
         if (vertices == null) return;
@@ -41,6 +40,7 @@ public class GrassGrid : MonoBehaviour
             }
         }
     }
+    */
     
     void SetTriangles()
     {
@@ -162,7 +162,6 @@ public class GrassGrid : MonoBehaviour
     {
         float stepX = surfaceLengthX / numCellsX;
         float stepY = surfaceLengthY / numCellsY;
-        float minCollisionDistance = 10000.0f;
 
         vertices = new Vector3[(numCellsX + 1) * (numCellsY + 1)];
         triangles = new int[3 * 2 * numCellsX * numCellsY];

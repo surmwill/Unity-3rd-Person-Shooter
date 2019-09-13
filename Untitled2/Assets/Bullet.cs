@@ -17,17 +17,33 @@ public class Bullet : MonoBehaviour
     }
 
     const float MAX_WORLD_LENGTH = 10.0f;
+    float bulletSpeed = 5.0f;
+    float bulletSize = 0.1f;
+    const float timeToLive = 10.0f;
+    float currTime = 0.0f;
+
     Vector3 bulletOrigin;
     GameObject bulletTrail;
     CollisionProperties collisionProperties;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         bulletTrail = Instantiate(PrefabManager.instance.bulletTrail);
+        bulletTrail.SetActive(false);
+    }
+
+    void OnEnable()
+    {
         bulletTrail.transform.rotation = Quaternion.AngleAxis(90, Vector3.right);
-        bulletTrail.transform.position = transform.position;
+        bulletTrail.SetActive(true);
         bulletOrigin = transform.position;
+        transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+        currTime = 0.0f;
+    }
+
+    void OnDisable()
+    {
+        bulletTrail.SetActive(false);
     }
 
     public void InitBullet(Vector3 bulletDirection, float kickBack)
@@ -40,13 +56,16 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(collisionProperties.bulletDirection * Time.deltaTime, Space.World);
+        transform.Translate(collisionProperties.bulletDirection * Time.deltaTime * bulletSpeed, Space.World);
         Vector3 trailVec = bulletOrigin - transform.position;
     
         float trailScale = 0.5f * (transform.position - bulletOrigin).magnitude;
         bulletTrail.transform.position = transform.position + 0.5f * trailVec;
-        bulletTrail.transform.localScale = new Vector3(1, trailScale, 1);
+        bulletTrail.transform.localScale = new Vector3(bulletSize, trailScale, bulletSize);
 
         if(trailVec != Vector3.zero) bulletTrail.transform.rotation = Quaternion.LookRotation(trailVec) * Quaternion.AngleAxis(90, Vector3.right);
+
+        currTime += Time.deltaTime;
+        if (currTime > timeToLive) gameObject.SetActive(false);
     }
 }

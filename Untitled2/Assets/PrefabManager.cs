@@ -5,7 +5,7 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour
 {
     public static PrefabManager instance;
-    public GameObject bullet, bulletTrail, groundBlock, grassPlatform;
+    public GameObject m16, bullet, bulletTrail, groundBlock, grassPlatform;
 
     void Awake()
     {

@@ -132,8 +132,9 @@ ModelImporter:
     2100000: Material.001
     4300000: 01
     7400000: Armature|Aim
-    7400002: Armature|Idle
-    7400004: Armature|Run
+    7400002: Armature|Aim.001
+    7400004: Armature|Idle
+    7400006: Armature|Run
     9500000: //RootNode
     13700000: 01
   externalObjects: {}
