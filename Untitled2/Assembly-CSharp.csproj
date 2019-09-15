@@ -66,7 +66,9 @@
      <Compile Include="Assets\PrefabManager.cs" />
      <None Include="Assets\Shaders\Grass.shader" />
      <None Include="Assets\Shaders\TessellationExample.shader" />
+     <None Include="Assets\Shaders\Flow.cginc" />
      <None Include="Assets\Shaders\CustomTessellation.cginc" />
+     <None Include="Assets\Shaders\FlowShader.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/w/Unity-3rd-Person-Shooter/Untitled2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
