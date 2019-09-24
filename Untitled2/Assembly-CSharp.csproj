@@ -67,6 +67,7 @@
      <None Include="Assets\Shaders\Grass.shader" />
      <None Include="Assets\Shaders\TessellationExample.shader" />
      <None Include="Assets\Shaders\Flow.cginc" />
+     <None Include="Assets\Shaders\DirectionalFlow.shader" />
      <None Include="Assets\Shaders\CustomTessellation.cginc" />
      <None Include="Assets\Shaders\FlowShader.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
