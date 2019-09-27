@@ -69,7 +69,10 @@
      <None Include="Assets\Shaders\Flow.cginc" />
      <None Include="Assets\Shaders\DirectionalFlow.shader" />
      <None Include="Assets\Shaders\CustomTessellation.cginc" />
+     <None Include="Assets\WaterPit\LookingThroughWater.cginc" />
+     <None Include="Assets\WaterPit\Flow.cginc" />
      <None Include="Assets\Shaders\Waves.shader" />
+     <None Include="Assets\WaterPit\MyShader.shader" />
      <None Include="Assets\Shaders\FlowShader.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/w/Unity-3rd-Person-Shooter/Untitled2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
