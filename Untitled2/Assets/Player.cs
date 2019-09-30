@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float DEBUG_rotate = 0.0f;
+    public float rot_x { get; private set; } = 0.0f;
+    public float rot_y { get; private set; } = 0.0f;
+
+    Transform leftUpperArm, rightUpperArm;
     private CharacterController characterController;
     private Animator animator;
     private Gun gun;
@@ -15,19 +20,28 @@ public class Player : MonoBehaviour
     private float jumpSpeed = 15.0f;
     private float gravity = -20.0f;
     private bool running = false;
+    private bool aiming = true;
 
     enum LMBState { PRESSED, NOT_PRESSED };
     private LMBState currLmbState = LMBState.PRESSED;
     private LMBState prevLmbState = LMBState.NOT_PRESSED;
 
     const string LAYER_AIM = "Aiming";
+    const string LEFT_UPPER_ARM_PATH = "Player/Armature/MiddleBack/UpperBack/LeftUpperArm";
+    const string RIGHT_UPPER_ARM_PATH = "Player/Armature/MiddleBack/UpperBack/RightUpperArm";
 
     const float aimingTransitionTime = 0.5f;
     const float aimingSteps = 10;
 
+    Vector3 trans_x_axis;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
+        leftUpperArm = GameObject.Find(LEFT_UPPER_ARM_PATH).transform;
+        if (!leftUpperArm) Debug.Log("Could not get a reference to leftUpperArm");
+        rightUpperArm = GameObject.Find(RIGHT_UPPER_ARM_PATH).transform;
+        if (!rightUpperArm) Debug.Log("Could not get a reference to rightUpperArm");
     }
 
     // Start is called before the first frame update
@@ -46,21 +60,35 @@ public class Player : MonoBehaviour
         if (currLmbState == LMBState.PRESSED && prevLmbState == LMBState.NOT_PRESSED)
         {
             animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 1.0f);
+            aiming = true;
         }
         else if (currLmbState == LMBState.NOT_PRESSED && prevLmbState == LMBState.PRESSED) 
         {
             prevLmbState = LMBState.NOT_PRESSED;
             animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 0.0f);
+            aiming = false;
         }
 
         prevLmbState = currLmbState;
     }
 
+    void LateUpdate()
+    {
+        if(gun && gun.Equipped && aiming) {
+            rightUpperArm.RotateAround(rightUpperArm.position, trans_x_axis, rot_x);
+            leftUpperArm.RotateAround(leftUpperArm.position, trans_x_axis, rot_x);
+            // rightUpperArm.rotation = Quaternion.AngleAxis(DEBUG_rotate, trans_x_axis) * rightUpperArm.rotation;
+            //rightUpperArm.rotation = Quaternion.Euler(45, 0, 0);
+        }
+    }
+
     public void UpdatePlayerMovement()
     {
         running = false;
-        transform.Rotate(0, GameInput.instance.mouseRotationX * GameInput.instance.playerRotationSpeed * Time.deltaTime, 0);
-        //else if (aim_rot_y.eulerAngles.y < -85.0f) aim_rot_y = Quaternion.Euler(-85.0f, 0, 0);
+        rot_y += GameInput.instance.mouseRotationX * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+        rot_x += GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, rot_y, 0);
+        trans_x_axis = transform.rotation * new Vector3(1, 0, 0);
 
         if (characterController.isGrounded) {
             if (characterController.isGrounded) velocity = Vector3.zero;
@@ -131,9 +159,9 @@ public class Player : MonoBehaviour
         {
             GameObject gunObject = hit.gameObject;
             gun = gunObject.GetComponent<Gun>();
-            if(!gun.equipped)
+            if(!gun.Equipped)
             {
-                gun.equipped = true;
+                gun.Equipped = true;
                 gunObject.GetComponent<Collider>().enabled = false;
             }
         }

@@ -6,12 +6,12 @@ public abstract class Gun : MonoBehaviour
 {
     float bulletSpeed, bulletSpread, bulletKickback;
     int layerMask;
-    bool _equipped = false;
-    public bool equipped { get { return _equipped; } set { _equipped = value; } }
+    public bool Equipped { get; set; } = true;
     Camera mainCamera;
     Vector3 barrelLocalOffset, gripLocalOffset;
     Transform playerGripHand;
     ObjectPool pool;
+    Player player;
 
     void Awake()
     {
@@ -20,6 +20,8 @@ public abstract class Gun : MonoBehaviour
         if (!mainCamera) Debug.Log("Could not get a reference to MainCamera");
         playerGripHand = GameObject.Find("Player/Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist").transform;
         if (!playerGripHand) Debug.Log("Could not get a reference to the player's gripping hand");
+        player = GameObject.Find("Player").GetComponent<Player>();
+        if (!player) Debug.Log("Could not get a reference to player");
     }
 
     virtual protected void Start()
@@ -45,9 +47,9 @@ public abstract class Gun : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!equipped) return;
-        transform.position = playerGripHand.transform.position + playerGripHand.TransformVector(gripLocalOffset);
-        transform.rotation = Quaternion.Euler(0, GameObject.Find("Player").transform.eulerAngles.y + 180.0f, 0);
+        if (!Equipped) return;
+        transform.position = playerGripHand.transform.position; // + playerGripHand.TransformVector(gripLocalOffset);
+        //transform.rotation = Quaternion.Euler(-player.rot_x, player.rot_y + 180.0f, 0);
     }
 
     void Shoot()
