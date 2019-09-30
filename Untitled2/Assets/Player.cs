@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
         if(gun && gun.Equipped && aiming) {
             rightUpperArm.RotateAround(rightUpperArm.position, trans_x_axis, rot_x);
             leftUpperArm.RotateAround(leftUpperArm.position, trans_x_axis, rot_x);
+            gun.UpdatePosition();
             // rightUpperArm.rotation = Quaternion.AngleAxis(DEBUG_rotate, trans_x_axis) * rightUpperArm.rotation;
             //rightUpperArm.rotation = Quaternion.Euler(45, 0, 0);
         }
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour
     {
         running = false;
         rot_y += GameInput.instance.mouseRotationX * GameInput.instance.playerRotationSpeed * Time.deltaTime;
-        rot_x += GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+        rot_x -= GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, rot_y, 0);
         trans_x_axis = transform.rotation * new Vector3(1, 0, 0);
 

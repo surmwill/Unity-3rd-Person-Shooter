@@ -45,11 +45,11 @@ public abstract class Gun : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    public void UpdatePosition()
     {
         if (!Equipped) return;
-        transform.position = playerGripHand.transform.position; // + playerGripHand.TransformVector(gripLocalOffset);
-        //transform.rotation = Quaternion.Euler(-player.rot_x, player.rot_y + 180.0f, 0);
+        transform.position = playerGripHand.transform.position + playerGripHand.TransformVector(gripLocalOffset);
+        transform.rotation = Quaternion.Euler(-player.rot_x, player.rot_y + 180.0f, 0);
     }
 
     void Shoot()
