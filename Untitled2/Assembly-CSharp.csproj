@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Bullet.cs" />
      <Compile Include="Assets\BulletTrail.cs" />
+     <Compile Include="Assets\CustomExceptions.cs" />
      <Compile Include="Assets\GameInput.cs" />
      <Compile Include="Assets\GrassGrid.cs" />
      <Compile Include="Assets\GroundBlock.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\Pistol.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\PrefabManager.cs" />
+     <Compile Include="Assets\Utils.cs" />
      <None Include="Assets\Shaders\Grass.shader" />
      <None Include="Assets\Shaders\TessellationExample.shader" />
      <None Include="Assets\Shaders\Flow.cginc" />

@@ -4,43 +4,53 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
+    const string PLAYER_PATH = "Player";
+    const string PLAYER_TRANSFORM_PATH = "Player/01";
+
     GameObject player;
-    Transform playerTransformRelToLocalOrigin;
-    Player playerScript;
-    Vector3 cameraPosOffset = new Vector3(0, 2.0f, -2.0f);
-    Vector3 aimAtOffset = new Vector3(0.25f, 0, 1);
-    Quaternion pos_rot_x = Quaternion.identity;
+    Transform playerTransform;
+
+    Vector3 cameraPosOffset = new Vector3(0, 0.0f, -2.0f);  // camera has this offset from the player model
+    Vector3 lookAtOffset = new Vector3(0.25f, 0, 1);    // don't look exactly at the player, but close
+
     float fov = 60.0f;
-    float offset_angle;
-    float rot_x;
+    float offset_angle, rot_x;
 
     void Awake()
     {
-        player = GameObject.Find("Player");
-        if (!player) Debug.Log("Could not get a reference to Player");
-        else playerScript = player.GetComponent<Player>();
-        if (!playerScript) Debug.Log("Could not get a reference to the Player's script");
-        playerTransformRelToLocalOrigin = player.transform.Find("01");
-        if (!playerTransformRelToLocalOrigin) Debug.Log("Could not get a reference to Player's local origin");
+        player = Utils.FindGameObject(PLAYER_PATH, ToString());
 
+        playerTransform = Utils.FindGameObject(PLAYER_TRANSFORM_PATH, ToString()).transform;
+        if (!playerTransform) Debug.Log("Could not get a reference to Player's local origin");
+
+        /*
+         * Before we adjust the player's orientation, calculate the camera's initial elevation from the xz (ground) plane
+         * Assume the camera's position is not off-center (a zero in the x-component) .
+         */ 
         Vector3 projection = Vector3.ProjectOnPlane(cameraPosOffset, new Vector3(0, -1, 0));
         offset_angle = Mathf.Acos(Vector3.Dot(projection.normalized, cameraPosOffset.normalized)) * Mathf.Rad2Deg;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    // Called by GameInput's Update()
     public void UpdateCameraMovement()
     {
+        /*
+         * Ensure the camera's positional rotation around the x-axis falls into a certain range. For example,
+         * we would not want the camera to make full circles around the player if we continually looking up  
+         */
         float temp_rot_x = rot_x + -GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
         if (!(temp_rot_x + offset_angle > fov || temp_rot_x + offset_angle < -fov)) rot_x = temp_rot_x;
-        //rot_x += -GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+
+        /*
+         * The idea is we start with the camera at its initial offset from the player (up and looking down
+         * at the player for example). Then we rotate the camera's position around the world's x and y axis
+         * according to where we move-the-mouse/look in the game. Then we add translate according to the player's
+         * position (in this case a little offsetted). Then we adjust the camera's viewing direction to look
+         * at the player.
+         */
         Quaternion rotation = Quaternion.Euler(rot_x, player.transform.eulerAngles.y, 0);
-        Vector3 aimAt = playerTransformRelToLocalOrigin.position + playerTransformRelToLocalOrigin.TransformDirection(aimAtOffset);
-        transform.position = aimAt + (rotation * cameraPosOffset);
-        transform.LookAt(aimAt);
+        Vector3 lookAt = playerTransform.position + playerTransform.TransformDirection(lookAtOffset);
+        transform.position = lookAt + (rotation * cameraPosOffset);
+        transform.LookAt(lookAt);
     }
 }

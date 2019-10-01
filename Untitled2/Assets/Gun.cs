@@ -6,7 +6,7 @@ public abstract class Gun : MonoBehaviour
 {
     float bulletSpeed, bulletSpread, bulletKickback;
     int layerMask;
-    public bool Equipped { get; set; } = true;
+    // public bool Equipped { get; set; } = true;
     Camera mainCamera;
     Vector3 barrelLocalOffset, gripLocalOffset;
     Transform playerGripHand;
@@ -39,20 +39,15 @@ public abstract class Gun : MonoBehaviour
         this.gripLocalOffset = gripLocalOffset;
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) Shoot();
-    }
-
     // Update is called once per frame
     public void UpdatePosition()
     {
-        if (!Equipped) return;
+        // if (!Equipped) return;
         transform.position = playerGripHand.transform.position + playerGripHand.TransformVector(gripLocalOffset);
         transform.rotation = Quaternion.Euler(-player.rot_x, player.rot_y + 180.0f, 0);
     }
 
-    void Shoot()
+    public void Shoot()
     {
         Vector3 bulletSpawn = transform.position + transform.TransformVector(barrelLocalOffset);
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -60,12 +55,6 @@ public abstract class Gun : MonoBehaviour
         if(Physics.Raycast(ray, out hit, 100.0f, ~layerMask))
         {
             Vector3 direction = (hit.point - bulletSpawn).normalized;
-            /*
-            GameObject bullet = Instantiate(
-                PrefabManager.instance.bullet, 
-                bulletSpawn, 
-                Quaternion.identity);
-            */
             GameObject bullet = pool.Fetch(bulletSpawn, Quaternion.identity);
             if(bullet) bullet.GetComponent<Bullet>().InitBullet(direction, bulletKickback);
         }
@@ -73,6 +62,5 @@ public abstract class Gun : MonoBehaviour
         {
             // error
         }
-        // Instantiate(PrefabManager.instance.bullet, barrel.position, transform.rotation);
     }
 }
