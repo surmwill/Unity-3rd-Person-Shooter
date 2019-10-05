@@ -7,7 +7,7 @@ public abstract class Gun : MonoBehaviour
     // constants
     const string PLAYER_GRIP_HAND_PATH = "Player/Armature/MiddleBack/UpperBack/LeftUpperArm/LeftLowerArm/LeftWrist";
     const string BULLET_POOL_NAME = "bullet pool name";
-    const int BULLET_POOL_SIZE = 500;
+    const int BULLET_POOL_SIZE = 5;
 
     // Shooting properties
     float bulletSpeed, bulletSpread, bulletKickback;

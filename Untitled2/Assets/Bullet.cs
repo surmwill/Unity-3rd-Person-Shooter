@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Used to calculate the push back a player experiences when colliding with the bullet
     public struct CollisionProperties
     {
         public Vector3 bulletDirection;
@@ -16,35 +17,28 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    const float MAX_WORLD_LENGTH = 10.0f;
-    float bulletSpeed = 5.0f;
-    float bulletSize = 0.1f;
-    const float timeToLive = 10.0f;
+    const float MAX_WORLD_LENGTH = 10.0f;   // max length of the bullet trail
+    const float TIME_TO_LIVE = 1.0f;    // time that the bullet trail exists
+
+    public CollisionProperties collisionProperties { get; private set; }
+
+    float bulletSpeed = 5.0f, bulletSize = 0.1f;
     float currTime = 0.0f;
 
     Vector3 bulletOrigin;
     GameObject bulletTrail;
-    CollisionProperties collisionProperties;
 
     void Awake()
     {
+        transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
         bulletTrail = Instantiate(PrefabManager.instance.bulletTrail);
         bulletTrail.SetActive(false);
     }
 
     void OnEnable()
     {
-        bulletTrail.transform.rotation = Quaternion.AngleAxis(90, Vector3.right);
-        bulletTrail.SetActive(true);
         bulletOrigin = transform.position;
-        transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
         currTime = 0.0f;
-    }
-
-    void OnDisable()
-    {
-        // BUGGY, fix this
-        bulletTrail.SetActive(false);
     }
 
     public void InitBullet(Vector3 bulletDirection, float kickBack)
@@ -52,24 +46,33 @@ public class Bullet : MonoBehaviour
         collisionProperties = new CollisionProperties(bulletDirection, kickBack);
     }
 
-    public CollisionProperties GetCollisionProperties() { return collisionProperties; }
-
     // Update is called once per frame
     void Update()
     {
+        /* 
+         * This cannot go into OnEnable() as one might expect. This is because the Gun fetches the bullet from
+         * its ObjectPool in its Update() call. The ObjectPool sets the bullet to be active which triggers
+         * the Bullet OnEnable() callback. If the bullet trail is set to active in OnEnable() it will appear
+         * in its old position until its position is updated in the next Update() call NEXT frame. This causes
+         * a strange positional jump.
+         */
+        if (!bulletTrail.activeInHierarchy) bulletTrail.SetActive(true);
+
+        // move the bullet, and then construct the trail according to the bullet's position and the origin from which it was fired
         transform.Translate(collisionProperties.bulletDirection * Time.deltaTime * bulletSpeed, Space.World);
         Vector3 trailVec = bulletOrigin - transform.position;
-    
-        float trailScale = 0.5f * (transform.position - bulletOrigin).magnitude;
-        bulletTrail.transform.position = transform.position + 0.5f * trailVec;
-        bulletTrail.transform.localScale = new Vector3(bulletSize, trailScale, bulletSize);
 
-        if(trailVec != Vector3.zero) bulletTrail.transform.rotation = Quaternion.LookRotation(trailVec) * Quaternion.AngleAxis(90, Vector3.right);
+        // Scale according to the distance between the bullet's position and origin. 0.5f scaled since a cyclinder has height 2
+        float trailScale = 0.5f * (transform.position - bulletOrigin).magnitude;    
+        bulletTrail.transform.position = transform.position + 0.5f * trailVec;  // move halfway between the bullet and its origin
+        bulletTrail.transform.localScale = new Vector3(bulletSize, trailScale, bulletSize);
+        bulletTrail.transform.rotation = Quaternion.LookRotation(trailVec) * Quaternion.AngleAxis(90, Vector3.right);
 
         currTime += Time.deltaTime;
-        if (currTime > timeToLive)
+        if (currTime > TIME_TO_LIVE)
         {
             gameObject.SetActive(false);
+            bulletTrail.SetActive(false);
         }
        
     }

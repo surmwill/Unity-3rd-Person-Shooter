@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 1.0f);
+        animator.SetLayerWeight(animator.GetLayerIndex(LAYER_AIM), 0.0f);
     }
 
     void Update()
@@ -97,10 +97,7 @@ public class Player : MonoBehaviour
        //  rot_x -= GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
         trans_x_axis = transform.rotation * new Vector3(1, 0, 0);
 
-        Debug.Log(rot_x);
-
         running = false;    // default to not playing a running animation (if we are jumping or just standing still)
-
         if (characterController.isGrounded)
         {
             if (characterController.isGrounded) velocity = Vector3.zero;    // don't fall through the map
@@ -175,7 +172,7 @@ public class Player : MonoBehaviour
     {
         if (hit.tag == PrefabManager.instance.bullet.tag)
         {
-            Bullet.CollisionProperties collisionProperties = hit.gameObject.GetComponent<Bullet>().GetCollisionProperties();
+            Bullet.CollisionProperties collisionProperties = hit.gameObject.GetComponent<Bullet>().collisionProperties;
             characterController.Move(collisionProperties.bulletDirection * collisionProperties.kickBack);
         }
         else if(hit.tag == PrefabManager.instance.m16.tag)
