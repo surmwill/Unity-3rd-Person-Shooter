@@ -299,6 +299,7 @@
 /define:CSHARP_7_3_OR_NEWER
 Assets\Bullet.cs
 Assets\BulletTrail.cs
+Assets\CustomExceptions.cs
 Assets\GameInput.cs
 Assets\GrassGrid.cs
 Assets\GroundBlock.cs
@@ -308,3 +309,4 @@ Assets\ObjectPool.cs
 Assets\Pistol.cs
 Assets\Player.cs
 Assets\PrefabManager.cs
+Assets\Utils.cs

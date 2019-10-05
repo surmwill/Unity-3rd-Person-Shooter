@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // public constants
+    public const string PLAYER_PATH = "Player";
+    public const string PLAYER_LAYER = "Player";
+
     // constants
     const string LAYER_AIM = "Aiming";
     const string LEFT_UPPER_ARM_PATH = "Player/Armature/MiddleBack/UpperBack/LeftUpperArm";
@@ -87,8 +91,13 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, rot_y, 0);
 
         // determine the angle we are looking up/down (to adjust the arms up/down while aiming)
-        rot_x -= GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+        float temp_rot_x = rot_x + -GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
+        if (!(temp_rot_x > MainCamera.MAX_X_ROT || temp_rot_x < -MainCamera.MAX_X_ROT)) rot_x = temp_rot_x;
+
+       //  rot_x -= GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
         trans_x_axis = transform.rotation * new Vector3(1, 0, 0);
+
+        Debug.Log(rot_x);
 
         running = false;    // default to not playing a running animation (if we are jumping or just standing still)
 

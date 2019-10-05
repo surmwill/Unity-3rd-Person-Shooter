@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    const string PLAYER_PATH = "Player";
+    public const string CAMERA_PATH = "MainCamera";
+    public const float MAX_X_ROT = 60.0f;
+
     const string PLAYER_TRANSFORM_PATH = "Player/01";
 
     GameObject player;
@@ -13,12 +15,11 @@ public class MainCamera : MonoBehaviour
     Vector3 cameraPosOffset = new Vector3(0, 0.0f, -2.0f);  // camera has this offset from the player model
     Vector3 lookAtOffset = new Vector3(0.25f, 0, 1);    // don't look exactly at the player, but close
 
-    float fov = 60.0f;
-    float offset_angle, rot_x;
+    float offset_angle, rot_x = 0.0f;
 
     void Awake()
     {
-        player = Utils.FindGameObject(PLAYER_PATH, ToString());
+        player = Utils.FindGameObject(Player.PLAYER_PATH, ToString());
 
         playerTransform = Utils.FindGameObject(PLAYER_TRANSFORM_PATH, ToString()).transform;
         if (!playerTransform) Debug.Log("Could not get a reference to Player's local origin");
@@ -39,7 +40,7 @@ public class MainCamera : MonoBehaviour
          * we would not want the camera to make full circles around the player if we continually looking up  
          */
         float temp_rot_x = rot_x + -GameInput.instance.mouseRotationY * GameInput.instance.playerRotationSpeed * Time.deltaTime;
-        if (!(temp_rot_x + offset_angle > fov || temp_rot_x + offset_angle < -fov)) rot_x = temp_rot_x;
+        if (!(temp_rot_x + offset_angle > MAX_X_ROT || temp_rot_x + offset_angle < -MAX_X_ROT)) rot_x = temp_rot_x;
 
         /*
          * The idea is we start with the camera at its initial offset from the player (up and looking down

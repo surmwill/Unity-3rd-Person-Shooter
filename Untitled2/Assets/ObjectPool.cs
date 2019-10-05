@@ -5,14 +5,13 @@ using UnityEngine;
 public class ObjectPool : ScriptableObject {
     GameObject refGameObject;
     List<GameObject> pool;
-    int nextUnused = 0;
-    int poolSize;
+    int poolSize, nextUnused = 0;
     string poolName;
 
     public void Init(string poolName, GameObject refGameObject, int poolSize)
     {
-        this.refGameObject = refGameObject;
         pool = new List<GameObject>(poolSize);
+        this.refGameObject = refGameObject;
         this.poolName = poolName;
         this.poolSize = poolSize;
         for(int i = 0; i < poolSize; i++)
@@ -29,16 +28,21 @@ public class ObjectPool : ScriptableObject {
 
     public GameObject Fetch(Vector3 position, Quaternion rotation)
     {
+        System.Func<GameObject> getUnused = () => 
+        {
+            int index = nextUnused;
+            pool[index].transform.position = position;
+            pool[index].transform.rotation = rotation;
+            pool[index].SetActive(true);
+            return pool[index];
+        };
+   
         int start = nextUnused;
         for(; nextUnused < poolSize; nextUnused++)
         {
             if(!pool[nextUnused].activeInHierarchy)
             {
-                nextUnused++;
-                pool[nextUnused].transform.position = position;
-                pool[nextUnused].transform.rotation = rotation;
-                pool[nextUnused].SetActive(true);
-                return pool[nextUnused];
+                return getUnused();
             }
         }
         nextUnused = 0;
@@ -46,11 +50,7 @@ public class ObjectPool : ScriptableObject {
         {
             if (!pool[nextUnused].activeInHierarchy)
             {
-                nextUnused++;
-                pool[nextUnused].transform.position = position;
-                pool[nextUnused].transform.rotation = rotation;
-                pool[nextUnused].SetActive(true);
-                return pool[nextUnused];
+                return getUnused();
             }
         }
 

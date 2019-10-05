@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour
 
     void OnDisable()
     {
+        // BUGGY, fix this
         bulletTrail.SetActive(false);
     }
 
@@ -66,6 +67,10 @@ public class Bullet : MonoBehaviour
         if(trailVec != Vector3.zero) bulletTrail.transform.rotation = Quaternion.LookRotation(trailVec) * Quaternion.AngleAxis(90, Vector3.right);
 
         currTime += Time.deltaTime;
-        if (currTime > timeToLive) gameObject.SetActive(false);
+        if (currTime > timeToLive)
+        {
+            gameObject.SetActive(false);
+        }
+       
     }
 }
