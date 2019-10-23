@@ -53,19 +53,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Bullet.cs" />
-     <Compile Include="Assets\BulletTrail.cs" />
-     <Compile Include="Assets\CustomExceptions.cs" />
-     <Compile Include="Assets\GameInput.cs" />
-     <Compile Include="Assets\GrassGrid.cs" />
-     <Compile Include="Assets\GroundBlock.cs" />
-     <Compile Include="Assets\Gun.cs" />
-     <Compile Include="Assets\MainCamera.cs" />
-     <Compile Include="Assets\ObjectPool.cs" />
-     <Compile Include="Assets\Pistol.cs" />
-     <Compile Include="Assets\Player.cs" />
-     <Compile Include="Assets\PrefabManager.cs" />
-     <Compile Include="Assets\Utils.cs" />
+     <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\BulletTrail.cs" />
+     <Compile Include="Assets\Scripts\CustomExceptions.cs" />
+     <Compile Include="Assets\Scripts\GameInput.cs" />
+     <Compile Include="Assets\Scripts\GrassGrid.cs" />
+     <Compile Include="Assets\Scripts\Grenade.cs" />
+     <Compile Include="Assets\Scripts\GroundBlock.cs" />
+     <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\Guns\M16.cs" />
+     <Compile Include="Assets\Scripts\MainCamera.cs" />
+     <Compile Include="Assets\Scripts\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PrefabManager.cs" />
+     <Compile Include="Assets\Scripts\Utils.cs" />
      <None Include="Assets\Shaders\Grass.shader" />
      <None Include="Assets\Shaders\TessellationExample.shader" />
      <None Include="Assets\Shaders\Flow.cginc" />
